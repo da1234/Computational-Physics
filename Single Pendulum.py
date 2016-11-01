@@ -71,8 +71,9 @@ def implicit(h, D, tMin, tMax):
     theta = np.full(t.size, 0.01)
     
     for i in range(1, t.size):
-        v[i] = (v[i-1] - theta[i-1] * h) / (1 + h + (D * h))
-        theta[i] = theta[i-1] + (v[i]) * h
+        denominator = 1 / (h**2 + D*h +1)
+        v[i] = denominator * (-h*theta[i-1] + v[i-1])
+        theta[i] = denominator * ((1 + h*D)*theta[i-1] + h*v[i-1])
         
     plt.plot(t, theta)
     plt.xlabel('Time')
