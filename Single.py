@@ -2,8 +2,6 @@
 from matplotlib import pyplot as plt 
 import numpy as np 
 
-
-
 class Single:
         
     def __init__(self,method,Egraph,damping,step,tmax):        
